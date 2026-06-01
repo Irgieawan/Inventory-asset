@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login Inventory Asset</title>
+  <style>
+    :root{--card-width:420px;--blue:#2563eb;--blue-dark:#1e40af;--yellow:#facc15}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+    body{
+      display:flex;align-items:center;justify-content:center;
+      background: linear-gradient(135deg, #fef08a 0%, #7cc3ff 50%, #2563eb 100%);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      padding:32px;
+    }
+
+    /* subtle decorative blobs */
+    body::before{
+      content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+      background:
+        radial-gradient(300px 200px at 10% 10%, rgba(255,255,255,0.6), transparent 30%),
+        radial-gradient(260px 160px at 90% 90%, rgba(255,255,255,0.45), transparent 28%);
+      mix-blend-mode:overlay;
+    }
+
+    .login-card{
+      width:var(--card-width);
+      max-width:100%;
+      background:#fff;border-radius:16px;padding:36px 28px;
+      box-shadow:0 10px 30px rgba(2,6,23,0.12);
+      text-align:center;
+    }
+
+    .logo{width:84px;height:84px;object-fit:contain;margin:0 auto 12px;display:block}
+    h1{font-size:20px;margin:6px 0 6px;color:#0f172a}
+    p.lead{margin:0 0 18px;color:#475569;font-size:14px}
+
+    .form-group{text-align:left;margin-bottom:14px}
+    label{display:block;font-size:13px;color:#374151;margin-bottom:6px}
+    input[type="email"],input[type="password"]{
+      width:100%;padding:12px 12px;border-radius:8px;border:1px solid #e6eef8;background:#f8fbff;outline:none;font-size:14px;color:#0f172a;
+      box-sizing:border-box;
+    }
+    input[type="email"]:focus,input[type="password"]:focus{box-shadow:0 6px 18px rgba(37,99,235,0.14);border-color:var(--blue-dark)}
+
+    .btn-primary{display:inline-block;width:100%;padding:12px;border-radius:10px;background:linear-gradient(180deg,var(--blue),var(--blue-dark));color:#fff;border:0;font-weight:600;cursor:pointer}
+    .btn-primary:active{transform:translateY(1px)}
+
+    #error{color:#b91c1c;margin-top:10px;min-height:18px}
+
+    .eye-toggle{position:relative}
+    .eye-toggle button{position:absolute;right:8px;top:8px;border:0;background:transparent;cursor:pointer;padding:6px}
+
+    @media (max-width:480px){body{padding:16px}.login-card{padding:24px}}
+  </style>
+</head>
+<body>
+
+  <div class="login-card" role="main">
+    <img class="logo" src="resources/Images/logo_lan.png" alt="LAN RI logo">
+    <h1>Login Inventory Asset</h1>
+    <p class="lead">Silakan masuk dengan ID dan password terdaftar.</p>
+
+    <div class="form-group">
+      <label for="email">ID</label>
+      <input type="email" id="email" placeholder="email@contoh.com" autocomplete="username">
+    </div>
+
+    <div class="form-group eye-toggle">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Masukkan password" autocomplete="current-password">
+      <button id="togglePwd" aria-label="Tampilkan password" title="Tampilkan password">👁️</button>
+    </div>
+
+    <button class="btn-primary" onclick="login()">Masuk</button>
+
+    <p id="error"></p>
+  </div>
+
+  <script>
+    // toggle show/hide password
+    document.getElementById('togglePwd').addEventListener('click', function(e){
+      e.preventDefault();
+      const pwd = document.getElementById('password');
+      if(pwd.type === 'password'){ pwd.type = 'text'; this.textContent = '🙈'; }
+      else{ pwd.type = 'password'; this.textContent = '👁️'; }
+    });
+  </script>
+
+  <script type="module" src="resources/js/login.js"></script>
+</body>
+</html>
